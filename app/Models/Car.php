@@ -9,8 +9,8 @@ class Car extends Model
 {
     use HasFactory;
 
-    public function post(): BelongsTo
+    public function clients()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 }

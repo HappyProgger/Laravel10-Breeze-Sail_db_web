@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,20 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+//
+//Route::get('/clients', function () {
+//    return Inertia::render('Welcome', [
+//        'canLogin' => Route::has('login'),
+//        'canRegister' => Route::has('register'),
+//        'laravelVersion' => Application::VERSION,
+//        'phpVersion' => PHP_VERSION,
+//    ]);
+//});
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -34,5 +49,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+#clients
+
+Route::get('/clients', [ClientsController::class, 'index'])->name('clients.index');
+Route::get('/clients/create', [ClientsController::class, 'create'])->name('clients.create');
+Route::post('/clients', [ClientsController::class, 'store'])->name('clients.store');
+Route::get('/clients/{id}', [ClientsController::class, 'show'])->name('clients.show');
+Route::get('/clients/{id}/edit', [ClientsController::class, 'edit'])->name('clients.edit');
+Route::put('/clients/{id}', [ClientsController::class, 'update'])->name('clients.update');
+Route::delete('/clients/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
 
 require __DIR__.'/auth.php';

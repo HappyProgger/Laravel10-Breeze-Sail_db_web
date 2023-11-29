@@ -21,10 +21,10 @@ class CarFactory extends Factory
 //        $client = Client::all();
         return [
 //        'client_id' =>           ,
-        'brand' => fake()->word,
-        'model' =>   $brand[rand(0,count($brand)-1)],
+        'brand' => $brand[rand(0,count($brand)-1)],
+        'model' =>  fake()->word,
         'body_color' =>         fake()->colorName() ,
-            'license_plate' =>  fake()->unique()->randomFloat(999)     ,
+        'license_plate' =>  fake()->unique()->randomFloat(999)     ,
         'is_parked' =>      fake()->boolean,
         ];
     }
