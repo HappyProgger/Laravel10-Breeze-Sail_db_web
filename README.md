@@ -1,6 +1,6 @@
-# Install and Set Up Laravel with Docker Compose
+# Install and Set Up Laravel Sail + Inertia + Vue3
 
-Setting up Laravel in the local environment with Docker using the LEMP stack that includes: PostgreSQL, PHP(Laravel 10), and adminer.
+Setting up Laravel in the local environment with Docker using the LEMP stack that includes: PostgreSQL, PHP(Laravel 10), Vue3 and pgadmin.
 
 ## Why use Docker for Development
 
@@ -25,32 +25,15 @@ Setting up Laravel in the local environment with Docker using the LEMP stack tha
         DB_PASSWORD=password
     ```
 6. In console  ```sail up -d --build```
-7. `php artisan key:generate```
-8. ``` npm install```
-9. ```npm run dev```
-11. ```sail php artisan migrate --seed```
+7. ```php artisan key:generate```
+8. ```sail php artisan migrate --seed```
+9. ``` npm install```
+10. ```npm run dev```
 
 
+## Mistake with db connection:
+1. https://stackoverflow.com/questions/66077795/laravel-sail-database-user-not-created
 
-
-## How to use PostgreSQL as a database
-
-1. Uncomment the PostgreSQL configuration inside the ```docker-compose.yml``` including: ```db``` and ```pgamdin```
-2. Copy ```.env.example``` to ```.env```
-3. Change ```DB_HOST``` to ```localhost```
-4. Change ```DB_CONNECTION``` to ```pgsql```
-5. Change ```DB_PORT``` to ```5432```
-6. Open the ```adminer``` on ```127.0.0.1:8080```
-7. Exec comand in root Laravel ```php artisan migrate ```
-8. Exec comand in root Laravel ```php artisan db:seed ```
-10. Exec comand in root Laravel ```sail php artisan serve```
-11. Test all methods of Resources_API in adress "http://127.0.0.1:8000/api/"
-12. You can see all routes "sail php artisan route:list"
-
-## How to run Laravel Commands with Docker Compose
-
-1. ```cd src```
-2. ```docker-compose exec app php artisan {your command}``` 
 
 ## Medium
 
