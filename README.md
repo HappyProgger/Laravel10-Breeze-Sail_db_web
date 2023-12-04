@@ -11,7 +11,7 @@ Setting up Laravel in the local environment with Docker using the LEMP stack tha
 
 ## How to Install and Run the Project
 
-1. ```git@github.com:HappyProgger/Laravel10_postgreSQL_adminer_restAPI.git```
+1. ```git@github.com:HappyProgger/Laravel10-Breeze-Sail_db_web.git```
 2. ```cd src```
 3. ```composer install```
 4. Copy ```.env.example``` to ```.env```
@@ -24,13 +24,13 @@ Setting up Laravel in the local environment with Docker using the LEMP stack tha
         DB_USERNAME=sail
         DB_PASSWORD=password
     ```
-7. In console ```php artisan key:generate```
-10. ```sail up -d --build```
+6. In console  ```sail up -d --build```
+7. `php artisan key:generate```
+8. ``` npm install```
+9. ```npm run dev```
 11. ```sail php artisan migrate --seed```
 
-6. ```docker-compose build```
-5. ```docker compose up -d```
-6. You can see the project on ```127.0.0.1:80```
+
 
 
 ## How to use PostgreSQL as a database
