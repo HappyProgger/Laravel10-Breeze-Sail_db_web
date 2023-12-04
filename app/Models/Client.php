@@ -9,9 +9,10 @@ class Client extends Model
 {
     use HasFactory;
 
+        protected $fillable = ['full_name','gender','phone','address'];
 
     public function cars()
     {
-        return $this->hasMany(Car::class);
+        return $this->hasMany(Car::class, 'client_id', 'id');
     }
 }

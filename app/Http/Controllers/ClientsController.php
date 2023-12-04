@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
+use App\Http\Requests\Clients\StoreClientRequest;
+use App\Http\Requests\Clients\UpdateClientRequest;
 use App\Models\Car;
 use App\Models\Client;
-use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Psr7\Request;
 use Inertia\Inertia;
 
 class ClientsController extends Controller
@@ -17,11 +17,9 @@ class ClientsController extends Controller
     public function index()
     {
         return Inertia::render('Clients', [
-            'cars' => Car::with('clients')->paginate(10)
-//            'canLogin' => Route::has('login'),
-//            'canRegister' => Route::has('register'),
-//            'laravelVersion' => Application::VERSION,
-//            'phpVersion' => PHP_VERSION,
+            'cars' => Car::with('clients')->orderBy('id')->paginate(10),
+            'csrf_token' => csrf_token(),
+
         ]);
     }
 
@@ -31,6 +29,7 @@ class ClientsController extends Controller
     public function create()
     {
         return Inertia::render('Client_create', [
+            'csrf_token' => csrf_token(),
 
         ]);
     }
@@ -40,21 +39,23 @@ class ClientsController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        return Inertia::render('Clients', [
 
-//            'csrf_token' => csrf_token()
-////            'canRegister' => Route::has('register'),
-////            'laravelVersion' => Application::VERSION,
-////            'phpVersion' => PHP_VERSION,
-        ]);
+    Client::create($request->except(['_token']));
+
+    return response()->json(['id_client' => Client::select('id')->where('phone', $request->get('phone'))->get()]);
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        //
+        return Inertia::render('Client_show', [
+            'csrf_token' => csrf_token(),
+            'client_with_cars' => Client::with('cars')->findOrFail($id),
+
+        ]);
     }
 
     /**

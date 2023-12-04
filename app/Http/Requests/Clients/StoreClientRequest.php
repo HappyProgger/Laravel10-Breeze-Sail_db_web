@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Clients;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateClientRequest extends FormRequest
+class StoreClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,13 @@ class UpdateClientRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $gender = ['male', 'female'];
         return [
-            //
+            'full_name' => 'required',
+            'gender' => 'required',
+            'phone' => 'required|unique:clients',
+            'address' => 'required',
         ];
     }
 }

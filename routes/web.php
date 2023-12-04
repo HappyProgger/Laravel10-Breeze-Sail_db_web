@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -62,4 +63,10 @@ Route::get('/clients/{id}/edit', [ClientsController::class, 'edit'])->name('clie
 Route::put('/clients/{id}', [ClientsController::class, 'update'])->name('clients.update');
 Route::delete('/clients/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
 
+
+
+Route::post('/clients/store_client_cars', [CarController::class, 'store'])->name('cars.store_client_car');
+Route::put('/clients/update_client_cars', [CarController::class, 'update'])->name('cars.update_client_car');
+Route::delete('/clients/delete_client_cars/{id}', [CarController::class, 'delete'])->name('cars.delete_client_car');
+Route::put('/clients/change_status_client_cars/{id}', [CarController::class, 'change_status_client_cars'])->name('cars.change_status_client_cars');
 require __DIR__.'/auth.php';
