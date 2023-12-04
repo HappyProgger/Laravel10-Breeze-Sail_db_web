@@ -217,7 +217,7 @@ export default {
 </script>
 
 <template>
-    {{ this.$inertia.page.props.client_with_cars.id}}
+
     <div class="m-10">
         <h1 class="text-3xl ml-10 ">Client</h1>
         <div class="p-8">
