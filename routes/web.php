@@ -26,18 +26,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-//
-//Route::get('/clients', function () {
-//    return Inertia::render('Welcome', [
-//        'canLogin' => Route::has('login'),
-//        'canRegister' => Route::has('register'),
-//        'laravelVersion' => Application::VERSION,
-//        'phpVersion' => PHP_VERSION,
-//    ]);
-//});
-
-
-
 
 
 
@@ -53,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-#clients
+#clients_ivents
 
 Route::get('/clients', [ClientsController::class, 'index'])->name('clients.index');
 Route::get('/clients/create', [ClientsController::class, 'create'])->name('clients.create');
@@ -63,10 +51,11 @@ Route::get('/clients/{id}/edit', [ClientsController::class, 'edit'])->name('clie
 Route::put('/clients/{id}', [ClientsController::class, 'update'])->name('clients.update');
 Route::delete('/clients/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
 
+#users_ivents
 
 
 Route::post('/clients/store_client_cars', [CarController::class, 'store'])->name('cars.store_client_car');
-Route::put('/clients/update_client_cars', [CarController::class, 'update'])->name('cars.update_client_car');
+Route::patch('/clients/update_client_cars', [CarController::class, 'update'])->name('cars.update_client_car');
 Route::delete('/clients/delete_client_cars/{id}', [CarController::class, 'delete'])->name('cars.delete_client_car');
 Route::put('/clients/change_status_client_cars/{id}', [CarController::class, 'change_status_client_cars'])->name('cars.change_status_client_cars');
 require __DIR__.'/auth.php';

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Clients;
+namespace App\Http\Requests\Cars;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClientRequest extends FormRequest
+class UpdateCliensCarstRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,13 @@ class StoreClientRequest extends FormRequest
      */
     public function rules(): array
     {
-
-        $gender = ['male', 'female'];
         return [
-            'full_name' => 'required|min:3',
-            'gender' => 'required',
-            'phone' => 'required|unique:clients',
-            'address' => 'required',
+            'client_id' => 'required',
+            'brand' => 'required',
+            'model' => 'required',
+            'body_color' => 'required',
+            'license_plate' => 'required',
+            'is_parked' => 'required',
         ];
     }
 }

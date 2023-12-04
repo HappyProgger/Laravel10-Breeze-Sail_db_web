@@ -127,8 +127,6 @@ export default {
 </script>
 
 <template>
-    {{ this.client_car_form.client_id }}
-    {{ current_client_id }}
     <div class="m-10">
         <h1 class="text-3xl ml-10 ">Client</h1>
         <div class="p-8">
@@ -260,19 +258,6 @@ export default {
                 >
             </div>
         </div>
-<!--        <button-->
-<!--            v-if="ifs.is_add_car"-->
-<!--            @click="is_add_car_form_on"-->
-<!--            :class="{'disabled' : false}"-->
-<!--            type="button"-->
-<!--            class="p-8 text-white  bg-green-700 hover:bg-green-800   font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"-->
-<!--            :disabled="client_form.processing"-->
-
-<!--        >-->
-<!--            Add cars-->
-<!--        </button>-->
-
-        <!--        изменить форму !!!!!!!!!!!!!!!-->
 
 
         <div v-if="current_client_id" class="p-8">
@@ -360,12 +345,6 @@ export default {
                     for="is_parked"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >Choose a state of machine</label>
-                <!--                <input-->
-                <!--                    type="text"-->
-                <!--                    v-model="client_car_form.is_parked"-->
-                <!--                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
-
-                <!--                />-->
 
                 <select
 

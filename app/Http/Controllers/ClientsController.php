@@ -69,9 +69,12 @@ class ClientsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(UpdateClientRequest $request, $id)
     {
-        //
+        $client= Client::find($request->id);
+        $client->update($request->except(['_token']));
+
+        return response(200);
     }
 
     /**

@@ -8,6 +8,8 @@ export default {
     },
     data(){
         return {
+            search_client_name : '',
+            row_cars_list :this.$inertia.page.props.cars.data,
             cars_list :  this.$inertia.page.props.cars.data,
             pagination_current_page: this.$inertia.page.props.current_page,
             pagination_links : this.$inertia.page.props.cars.links
@@ -15,6 +17,10 @@ export default {
         }
     },
     methods : {
+        search_client(){
+                    this.cars_list = this.row_cars_list.filter(car => car.clients.full_name.includes(this.search_client_name))
+
+        },
         show_clients_data(id){
                 window.location = window.location.origin + "/clients/" + String(id)
         },
@@ -51,16 +57,15 @@ export default {
 
             ).then(res => {
 
-                // this.cars_list.forEach(car => car.id === String(id) ?
-                //     car.is_parked = true : car.is_parked = false)
 
             })
-
-
         },
-
-
-
+    },
+    watch:
+        {
+        search_client_name (){
+             this.search_client()
+        }
     }
 }
 </script>
@@ -68,10 +73,10 @@ export default {
 
 
 <template>
-    {{ this.$inertia.page.props.cars.data[0].clients}}
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
+
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Laravel 9 Vue 3 Pagination Example with Vite - NiceSnippets.com
@@ -80,6 +85,21 @@ export default {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h1 class="text-5xl mb-10">Cars of our parcking</h1>
+                <label
+                    for="full_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >Fast search:</label
+                >
+                <input
+                    type="text"
+                    v-model='this.search_client_name'
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder='Input client name'
+
+                />
+
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
 
@@ -96,7 +116,6 @@ export default {
                             </thead>
                             <tbody>
                             <tr v-for="car in cars_list" :key="car.license_plate">
-<!--                                <th className="px-4 py-2 w-20">{{ car.clients.full_name}}</th>-->
                                 <th className="px-4 py-2">{{ car.clients.full_name }}</th>
                                 <th className="px-4 py-2">{{ car.model }}</th>
                                 <th className="px-4 py-2">{{ car.license_plate }}</th>

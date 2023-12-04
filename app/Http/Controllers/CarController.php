@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Cars\StoreCliensCarstRequest;
+use App\Http\Requests\Cars\UpdateCliensCarstRequest;
 use App\Models\Car;
 use App\Models\Client;
 use Illuminate\Http\Request;
@@ -16,9 +17,10 @@ class CarController extends Controller
         return response(200);
     }
 
-    public function update(StoreCliensCarstRequest $request)
+    public function update(UpdateCliensCarstRequest $request)
     {
-        Car::insert($request->except(['_token']));
+        $car= Car::find($request->id);
+        $car->update($request->except(['_token']));
 
         return response(200);
     }
